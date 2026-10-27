@@ -1,0 +1,49 @@
+plugins {
+    id 'com.android.application'
+}
+
+def runNo = Integer.parseInt(System.getenv("GITHUB_RUN_NUMBER") ?: "1")
+
+android {
+    namespace 'io.github.moominiscute.nsuns531'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "io.github.moominiscute.nsuns531"
+        minSdk 29
+        targetSdk 34
+        versionCode runNo
+        versionName "1.0." + runNo
+    }
+
+    // 항상 같은 키로 서명해야 새 버전을 기존 앱 위에 덮어 설치할 수 있습니다(기록 유지).
+    signingConfigs {
+        release {
+            storeFile file('nsuns531.keystore')
+            storePassword 'nsuns531'
+            keyAlias 'nsuns531'
+            keyPassword 'nsuns531'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation 'androidx.webkit:webkit:1.11.0'
+}

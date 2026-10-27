@@ -37,3 +37,25 @@
 1. 바뀐 파일을 같은 저장소에 다시 업로드합니다.
 2. `sw.js` 맨 위 `VERSION` 값을 바꿉니다. 예: `nsuns-v1` → `nsuns-v2`
    - 이걸 바꿔야 폰에 저장된 예전 화면 대신 새 버전이 뜹니다.
+
+---
+
+# 안드로이드 전용 앱(APK)으로 쓰기
+
+브라우저 없이 기록을 앱 안에 저장하는 진짜 안드로이드 앱입니다. APK는 깃허브가 대신 만들어 줍니다.
+
+## 처음 한 번만
+1. 저장소에서 **Add file → Upload files** → `android` 폴더(통째로), `index.html`, `sw.js` 를 끌어다 놓고 **Commit changes**.
+2. **Add file → Create new file** → 파일 이름 칸에 `.github/workflows/android-build.yml` 입력
+   → 이 폴더의 `android-build.yml` 내용을 메모장으로 열어 전부 복사해 붙여넣기 → **Commit changes**.
+3. 저장소 위쪽 **Actions** 탭에서 초록 체크가 뜰 때까지 3~5분 기다리기.
+4. 폰에서 아래 주소를 열어 APK를 받아 설치:
+   https://github.com/moominIsCute/nsuns531/releases/latest/download/nsuns531.apk
+
+## 기록 옮기기
+새 앱 → 기록·그래프 → 백업 파일 불러오기 → 다운로드 폴더의 nsuns-backup-날짜.json 선택
+
+## 앱을 고친 뒤
+`index.html` 만 다시 올리면 깃허브가 새 APK를 자동으로 만듭니다.
+같은 주소에서 받아 덮어 설치하면 기록은 그대로 유지됩니다.
+(`android/app/nsuns531.keystore` 파일을 지우거나 바꾸면 덮어 설치가 안 되니 그대로 두세요.)

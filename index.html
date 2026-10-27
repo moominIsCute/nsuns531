@@ -197,7 +197,7 @@ ol.tips{margin:0;padding-left:18px;font-size:13px;color:var(--muted);display:fle
     </section>
     <section class="panel">
       <h2>백업</h2>
-      <p class="note">기록은 이 폰에만 저장됩니다. 폰을 바꾸거나 앱 데이터를 지우기 전에 백업 파일을 내려받아 두세요.</p>
+      <p class="note">기록은 이 폰(이 앱)에만 저장됩니다. 폰을 바꾸거나 앱 데이터를 지우기 전에 백업 파일을 내려받아 두세요.</p>
       <div class="bkbtns">
         <button class="btn primary" id="bkExport">백업 파일 내려받기</button>
         <label class="btn" for="bkImport">백업 파일 불러오기</label>
@@ -238,7 +238,7 @@ ol.tips{margin:0;padding-left:18px;font-size:13px;color:var(--muted);display:fle
       <li>판정 세트: 스쿼트 Day 2, OHP Day 3, 데드리프트 Day 4, 벤치 Day 5. 바벨로우는 T1이 없어 Day 2의 로우 8세트를 모두 채우면 +2.5kg입니다.</li>
       <li>T2는 T1 TM을 따라 함께 오릅니다.</li>
       <li>각 요일은 기록 후 '운동 완료'를 눌러 마칩니다. 5일 모두 완료하면 다음 주 시작 버튼이 나옵니다. 중간에 '다음 주 시작'을 눌러도 진행됩니다.</li>
-      <li>보조운동은 더블 프로그레션으로 자동 증량됩니다. 모든 세트가 반복 범위 상단에 닿으면 다음 주 중량이 오르고(레터럴 +1kg, 카프 +5kg, 그 외 +2.5kg, 턱걸이는 추가 중량 +2.5kg), 범위 하단부터 다시 채웁니다. 바벨컬 시작 중량은 로우 TM의 40%입니다. 행잉 레그레이즈는 전 세트 상단을 채우면 목표가 +2회, 플랭크는 +5초 늘어납니다.</li>
+      <li>보조운동은 더블 프로그레션으로 자동 증량됩니다. 모든 세트가 반복 범위 상단에 닿으면 다음 주 중량이 오르고(레터럴 +1kg, 카프 +5kg, 그 외 +2.5kg, 턱걸이는 목표 +1회), 범위 하단부터 다시 채웁니다. 바벨컬 시작 중량은 로우 TM의 40%입니다. 행잉 레그레이즈는 전 세트 상단을 채우면 목표가 +2회, 플랭크는 +5초 늘어납니다.</li>
       <li>다음 주로 넘어가는 순간 증량된 TM이 확정됩니다. 확정 후에도 TM은 직접 고칠 수 있습니다.</li>
       <li>nSuns에는 정해진 디로드 주기가 없습니다. ★ 세트가 2주 연속 0–1회면 다음 주를 시작할 때 해당 종목 TM 10% 하향을 권합니다. 수락하면 그 종목만 낮추고, 거절하면 그대로 진행하며 계속 정체되면 다시 묻습니다. 또한 디로드 없이 6주가 지나면 다음 주를 시작할 때 디로드를 권합니다. 수락하면 그 주는 디로드 주(메인 중량 50%·세트 절반, 보조 세트 절반)로 진행하고 다음 주에 같은 TM으로 사이클에 복귀합니다. 거절하면 그대로 진행하고 매주 다시 묻습니다.</li>
     </ol>
@@ -255,7 +255,7 @@ const DAYS=[
  {name:'Day 1',tag:'벤치 볼륨',lifts:[
   {tier:'T1',label:'벤치프레스',base:'bench',sets:P([[65,8],[75,6],[85,4],[85,4],[85,4],[80,5],[75,6],[70,7],[65,'8+',1]])},
   {tier:'T2',label:'오버헤드프레스',base:'ohp',sets:P([[50,6],[60,5],[70,3],[70,5],[70,7],[70,4],[70,6],[70,8]])}],
-  acc:[['d1-pu','턱걸이','bw',4,8,10,2.5],['d1-lat','사이드 레터럴 레이즈','kg',3,12,15,1],['d1-curl','바벨컬','kg',3,8,12,2.5]]},
+  acc:[['d1-pu','턱걸이','reps',4,8,10,1],['d1-lat','사이드 레터럴 레이즈','kg',3,12,15,1],['d1-curl','바벨컬','kg',3,8,12,2.5]]},
  {name:'Day 2',tag:'스쿼트',key:'squat',lifts:[
   {tier:'T1',label:'스쿼트',base:'squat',sets:P(T1A)},
   {tier:'T2',label:'바벨로우',swap:'스모데드 대체',base:'row',sets:P([[50,5],[60,5],[70,3],[70,5],[70,7],[70,4],[70,6],[70,8]])}],
@@ -263,7 +263,7 @@ const DAYS=[
  {name:'Day 3',tag:'OHP',key:'ohp',lifts:[
   {tier:'T1',label:'오버헤드프레스',base:'ohp',sets:P(T1A)},
   {tier:'T2',label:'인클라인 벤치',base:'bench',sets:P([[40,6],[50,5],[60,3],[60,5],[60,7],[60,4],[60,6],[60,8]])}],
-  acc:[['d3-pu','턱걸이','bw',4,8,10,2.5],['d3-tri','트라이셉스 익스텐션','kg',3,10,12,2.5],['d3-lat','사이드 레터럴 레이즈','kg',2,12,15,1]]},
+  acc:[['d3-pu','턱걸이','reps',4,8,10,1],['d3-tri','트라이셉스 익스텐션','kg',3,10,12,2.5],['d3-lat','사이드 레터럴 레이즈','kg',2,12,15,1]]},
  {name:'Day 4',tag:'데드',key:'dead',lifts:[
   {tier:'T1',label:'데드리프트',base:'dead',sets:P([[75,5],[85,3],[95,'1+',1],[90,3],[85,3],[80,3],[75,3],[70,3],[65,'3+',1]])},
   {tier:'T2',label:'프론트 스쿼트',base:'squat',sets:P([[35,5],[45,5],[55,3],[55,5],[55,7],[55,4],[55,6],[55,8]])}],
@@ -659,9 +659,15 @@ let rzT;window.addEventListener('resize',()=>{clearTimeout(rzT);rzT=setTimeout((
 /* ---------- 백업 ---------- */
 document.getElementById('bkExport').onclick=()=>{
   const data=JSON.stringify({app:'nsuns531',version:1,exported:new Date().toISOString(),meta,weeks},null,1);
+  const fname=`nsuns-backup-${today()}.json`;
+  if(window.AndroidBridge){
+    const saved=window.AndroidBridge.saveBackup(fname,data);
+    document.getElementById('bkMsg').textContent=saved?`휴대폰 ${saved} 에 저장했습니다.`:'저장하지 못했습니다. 저장공간을 확인한 뒤 다시 눌러 주세요.';
+    return;
+  }
   const a=document.createElement('a');
   a.href=URL.createObjectURL(new Blob([data],{type:'application/json'}));
-  a.download=`nsuns-backup-${today()}.json`;
+  a.download=fname;
   document.body.appendChild(a);a.click();a.remove();
   setTimeout(()=>URL.revokeObjectURL(a.href),2000);
   document.getElementById('bkMsg').textContent='백업 파일을 내려받았습니다.';
@@ -683,7 +689,7 @@ document.getElementById('bkImport').addEventListener('change',async e=>{
   }catch(err){document.getElementById('bkMsg').textContent='이 앱의 백업 파일이 아닙니다. nsuns-backup-날짜.json 파일을 골라 주세요.'}
   e.target.value='';
 });
-if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
+if(!window.AndroidBridge&&'serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('sw.js').catch(()=>{}))}
 
 document.getElementById('prevW').onclick=()=>{if(view>1){view--;render()}};
 document.getElementById('nextW').onclick=goNext;
@@ -691,6 +697,7 @@ document.getElementById('nextW').onclick=goNext;
 (async()=>{
   await initStore();
   ensureWeek1();
+  if(!meta.puReps){for(const w of Object.keys(weeks)){const A=weeks[w].acc;if(!A)continue;for(const id of ['d1-pu','d3-pu']){if(A[id]!=null)A[id]=Math.round(A[id]/2.5)}}meta.puReps=true;setTimeout(()=>{for(const w of Object.keys(weeks))persist(+w);persist(null)},0)}
   for(const w of Object.keys(weeks)){const W=weeks[w];if(W.tm&&W.tm.dead==null)W.tm.dead=EX_TM.dead}
   if(!weeks[meta.cur]) meta.cur=Math.max(...Object.keys(weeks).map(Number));
   view=meta.cur;

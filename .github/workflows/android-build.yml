@@ -1,0 +1,41 @@
+name: Android APK
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+
+      - name: 웹 화면(index.html)을 앱 안에 넣기
+        run: |
+          mkdir -p android/app/src/main/assets
+          cp index.html android/app/src/main/assets/index.html
+
+      - name: APK 빌드
+        working-directory: android
+        run: gradle assembleRelease --no-daemon
+
+      - name: Releases에 최신 APK 올리기
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/release/app-release.apk nsuns531.apk
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest nsuns531.apk --title "nSuns 531 앱 (최신)" --notes "빌드 #${{ github.run_number }}"

@@ -1,5 +1,5 @@
 // 오프라인 실행용 서비스 워커. 앱을 수정해 다시 올릴 때는 VERSION 숫자를 올리세요.
-const VERSION = 'nsuns-v1';
+const VERSION = 'nsuns-v3';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
